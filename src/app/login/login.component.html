@@ -1,0 +1,38 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="email">Email</label>
+    <input
+      type="text"
+      id="email"
+      formControlName="email"
+      required
+      [ngClass]="{
+        inputError: email!.invalid && (password!.dirty || email!.touched),
+        inputSuccess: email!.valid
+      }"
+    />
+    <div *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="error">
+      <div *ngIf="email!.errors?.['required']" class="error">Email is required</div>
+      <div *ngIf="email!.errors?.['pattern']" class="error">Email is not correct</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      required
+      [ngClass]="{
+        inputError: password!.invalid && (password!.dirty || password!.touched),
+        inputSuccess: password!.valid
+      }"
+    />
+    <div *ngIf="password!.invalid && (password!.dirty || password!.touched)" class="error">
+      <div *ngIf="password!.errors?.['required']">Password is required</div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="loginForm.invalid">Submit</button>
+</form>
