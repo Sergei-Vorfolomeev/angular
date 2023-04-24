@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { PageNotFoundComponent } from 'src/app/page-not-found/components/page-not-found.component'
 
 const routes: Routes = [
-  { path: '404', component: PageNotFoundComponent },
+  { path: '', component: PageNotFoundComponent },
   { path: '**', redirectTo: '404' },
 ]
 
