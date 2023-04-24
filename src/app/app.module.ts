@@ -3,28 +3,31 @@ import { BrowserModule } from '@angular/platform-browser'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { TodosComponent } from './todos/todos.component'
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
-import { LoginComponent } from './login/login.component'
-import { HomeComponent } from './home/home.component'
-import { UsersComponent } from './users/users.component'
-import { ProfileComponent } from './profile/profile.component'
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
-import { HttpOptionsInterceptor } from 'src/app/interceptors/http-options.interceptor'
+import { HttpClientModule } from '@angular/common/http'
+import { PageNotFoundComponent } from 'src/app/page-not-found/components/page-not-found.component'
+import { AuthModule } from 'src/app/auth/auth.module'
+import { SharedModule } from 'src/app/shared/shared.module'
+import { TodosModule } from 'src/app/todos/todos.module'
+import { UsersModule } from 'src/app/users/users.module'
+import { ProfileModule } from 'src/app/profile/profile.module'
+import { HomeModule } from 'src/app/home/home.module'
+import { CoreModule } from 'src/app/core/core.module'
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TodosComponent,
-    LoginComponent,
-    HomeComponent,
-    UsersComponent,
-    ProfileComponent,
-    PageNotFoundComponent,
+  declarations: [AppComponent, PageNotFoundComponent],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    AuthModule,
+    SharedModule,
+    TodosModule,
+    UsersModule,
+    ProfileModule,
+    HomeModule,
+    CoreModule,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpOptionsInterceptor, multi: true }],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

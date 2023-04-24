@@ -1,21 +1,10 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { environmentNetwork } from 'src/environments/environment'
+import { MeResponse } from 'src/app/core/models/auth.model'
+import { ResultCode } from 'src/app/core/enums/core.enums'
 
-interface MeResponse {
-  data: {
-    id: number
-    login: string
-    email: string
-  }
-  messages: string[]
-  fieldErrors: string[]
-  resultCode: number
-}
-
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AuthService {
   constructor(private http: HttpClient) {}
 
@@ -23,7 +12,7 @@ export class AuthService {
 
   me() {
     this.http.get<MeResponse>(`${environmentNetwork.baseUrl}/auth/me`).subscribe(res => {
-      if (res.resultCode === 0) this.isAuth = true
+      if (res.resultCode === ResultCode.Success) this.isAuth = true
     })
   }
 }

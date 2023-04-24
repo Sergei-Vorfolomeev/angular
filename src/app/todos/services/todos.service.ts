@@ -2,24 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { BehaviorSubject, catchError, EMPTY, map } from 'rxjs'
 import { environmentTodo } from 'src/environments/environment'
-
-export interface Todo {
-  addedDate: string
-  id: string
-  order: number
-  title: string
-}
-
-export interface TodoResponse<T = object> {
-  data: T
-  messages: string[]
-  fieldsErrors: string[]
-  resultCode: number
-}
-
-export interface Data {
-  item: Todo
-}
+import { Data, Todo, TodoResponse } from 'src/app/core/models/todos.model'
 
 @Injectable({
   providedIn: 'root',
